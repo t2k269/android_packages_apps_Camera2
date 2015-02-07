@@ -885,6 +885,8 @@ CHAR LIMIT=NONE] -->
     <string name="pref_category_advanced">Advanced</string>
     <!-- Title of a preference for enabling manual exposure compensation. [CHAR LIMIT=20] -->
     <string name="pref_camera_exposure_compensation">Manual exposure</string>
+    <!-- Title of a preference for enabling hold shutter to center focus. [CHAR LIMIT=20] -->
+    <string name="pref_camera_press_and_hold_center_focus">Hold to Center Focus</string>
 
     <!-- Text shown next to the settings button to explain what is in settings menu. [CHAR LIMIT=120] !-->
     <string name="settings_cling_text">In Settings, change resolution and quality, or try advanced features.</string>

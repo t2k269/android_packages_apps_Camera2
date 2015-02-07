@@ -69,6 +69,8 @@ public class Keys {
             "pref_should_show_refocus_viewer_cling";
     public static final String KEY_EXPOSURE_COMPENSATION_ENABLED =
             "pref_camera_exposure_compensation_key";
+    public static final String KEY_PRESS_AND_HOLD_CENTER_FOCUS_ENABLED =
+            "pref_camera_press_and_hold_center_focus_key";
     public static final String KEY_USER_SELECTED_ASPECT_RATIO = "pref_user_selected_aspect_ratio";
     public static final String KEY_COUNTDOWN_DURATION = "pref_camera_countdown_duration_key";
     public static final String KEY_HDR_PLUS_FLASH_MODE = "pref_hdr_plus_flash_mode";
