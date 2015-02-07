@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -179,6 +180,7 @@ public class PhotoModule
     // We use a queue to generated names of the images to be used later
     // when the image is ready to be saved.
     private NamedImages mNamedImages;
+    private boolean mShutterButtonPressed = false;
 
     private final Runnable mDoSnapRunnable = new Runnable() {
         @Override
@@ -1208,7 +1210,7 @@ public class PhotoModule
             mAutoFocusTime = System.currentTimeMillis() - mFocusStartTime;
             Log.v(TAG, "mAutoFocusTime = " + mAutoFocusTime + "ms   focused = "+focused);
             setCameraState(IDLE);
-            mFocusManager.onAutoFocus(focused, false);
+            mFocusManager.onAutoFocus(focused, mShutterButtonPressed);
         }
     }
 
@@ -1508,7 +1510,16 @@ public class PhotoModule
 
     @Override
     public void onShutterButtonFocus(boolean pressed) {
-        // Do nothing. We don't support half-press to focus anymore.
+        if (mActivity.getSettingsManager().getBoolean(SettingsManager.SCOPE_GLOBAL,
+                Keys.KEY_PRESS_AND_HOLD_CENTER_FOCUS_ENABLED)) {
+            mShutterButtonPressed = true; 
+            if (pressed) {
+                Rect rect = mFocusManager.getPreviewRect();
+                mFocusManager.onSingleTapUp(rect.centerX(), rect.centerY());
+            }
+        } else {
+            mShutterButtonPressed = false;
+        }
     }
 
     @Override
