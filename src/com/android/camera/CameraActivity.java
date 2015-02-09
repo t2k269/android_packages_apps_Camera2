@@ -1381,7 +1381,7 @@ public class CameraActivity extends Activity
         mMainHandler = new MainHandler(this, getMainLooper());
         mCameraController = new CameraController(mAppContext, this, mMainHandler,
                 CameraAgentFactory.getAndroidCameraAgent(this, CameraAgentFactory.CameraApi.API_1),
-                CameraAgentFactory.getAndroidCameraAgent(this, CameraAgentFactory.CameraApi.AUTO));
+                CameraAgentFactory.getAndroidCameraAgent(this, CameraAgentFactory.CameraApi.API_1));
         mCameraController.setCameraDefaultExceptionCallback(mCameraDefaultExceptionCallback,
                 mMainHandler);
 
