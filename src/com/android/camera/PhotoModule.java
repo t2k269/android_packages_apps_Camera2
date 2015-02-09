@@ -1197,7 +1197,10 @@ public class PhotoModule
             if (mPaused) {
                 return;
             }
-
+            if (focused) {
+                mFocusManager.setAeAwbLock(true);
+                setCameraParameters(UPDATE_PARAM_ALL);
+            }
             mAutoFocusTime = System.currentTimeMillis() - mFocusStartTime;
             Log.v(TAG, "mAutoFocusTime = " + mAutoFocusTime + "ms   focused = "+focused);
             setCameraState(IDLE);
@@ -1511,6 +1514,9 @@ public class PhotoModule
             if (pressed) {
                 Rect rect = mFocusManager.getPreviewRect();
                 mFocusManager.onSingleTapUp(rect.centerX(), rect.centerY());
+            } else {
+                mFocusManager.setAeAwbLock(false);
+                setCameraParameters(UPDATE_PARAM_ALL);
             }
         } else {
             mShutterButtonPressed = false;
@@ -2355,6 +2361,7 @@ public class PhotoModule
 
     private void initializeCapabilities() {
         mCameraCapabilities = mCameraDevice.getCapabilities();
+        Log.i(TAG, "CameraCapabilities (" + mCameraCapabilities.getClass().getName() + "): " + mCameraCapabilities);
         mFocusAreaSupported = mCameraCapabilities.supports(CameraCapabilities.Feature.FOCUS_AREA);
         mMeteringAreaSupported = mCameraCapabilities.supports(CameraCapabilities.Feature.METERING_AREA);
         mAeLockSupported = mCameraCapabilities.supports(CameraCapabilities.Feature.AUTO_EXPOSURE_LOCK);
