@@ -1434,7 +1434,7 @@ public class CameraActivity extends QuickActivity
                 CameraAgentFactory.getAndroidCameraAgent(mAppContext,
                         CameraAgentFactory.CameraApi.API_1),
                 CameraAgentFactory.getAndroidCameraAgent(mAppContext,
-                        CameraAgentFactory.CameraApi.AUTO));
+                        CameraAgentFactory.CameraApi.API_1));
         mCameraController.setCameraExceptionHandler(
                 new CameraExceptionHandler(mCameraExceptionCallback, mMainHandler));
 
